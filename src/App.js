@@ -7,25 +7,32 @@ import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
 import "./App.css";
 
-// import App from './App.css'
-// import App from './App';
+let pdf = new jsPDF('p', 'mm', 'a4')
 
-function App() {
-    console.log("app online")
-    return(<ImageContainer
-      print = {print}
-    />)
-
-
-function print() {
+function printTest(pdf) {
   const filename  = 'ThisIsYourPDFFilename.pdf';
-
   html2canvas(document.getElementById('image-container1')).then(canvas => {
-    let pdf = new jsPDF('p', 'mm', 'a4');
     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
     pdf.save(filename);
   });
 }
+
+function App() {
+    console.log("app online")
+    return(<ImageContainer
+      print = {printTest}
+    />)
+
+
+// function print() {
+//   const filename  = 'ThisIsYourPDFFilename.pdf';
+
+//   html2canvas(document.getElementById('image-container1')).then(canvas => {
+//     let pdf = new jsPDF('p', 'mm', 'a4');
+//     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
+//     pdf.save(filename);
+//   });
+// }
 }
 
 // function print() {
